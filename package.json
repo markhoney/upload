@@ -1,14 +1,14 @@
 {
-  "name": "tim",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+	"name": "upload-test",
+	"version": "1.0.1",
+	"description": "A test of uploading an Excel spreadsheet, manipulating the data, and then allowing download of the edited data as a spreadsheet",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
 }
