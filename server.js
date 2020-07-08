@@ -4,4 +4,4 @@ const port = 8080;
 
 app.use(express.static('.'));
 
-app.listen(port, () => console.log(`listening on port ${port}!`));
+app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
