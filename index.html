@@ -22,14 +22,8 @@
 					<p>Click to select a file</p>
 				</div>
 			</div>
-			<div class="mx-16">
-				<div class="w-full my-8">
-					<button class="mx-auto bg-gray-300 hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center" @click="download">
-						<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
-						<span>Download</span>
-					</button>
-				</div>
-				<div class="flex">
+			<div class="flex flex-col items-center mx-16">
+				<div class="flex my-8">
 					<div class="custom-number-input h-10 w-64">
 						<label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Numeric cell multiplier</label>
 						<div class="flex flex-row h-10 w-32 rounded-lg relative bg-transparent mt-1">
@@ -43,7 +37,13 @@
 						<input type="text" v-model="append" class="shadow appearance-none border rounded py-2 px-3 text-grey-darker">
 					</div>
 				</div>
-				<table class="w-full text-md bg-white shadow-md rounded mt-16">
+				<div v-if="output && output.length" class="mt-16 mb-8">
+					<button class="w-32 bg-gray-300 hover:bg-grey text-grey-900 font-bold py-2 px-4 rounded inline-flex items-center" @click="download">
+						<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+						<span>Download</span>
+					</button>
+				</div>
+				<table class="w-full text-md bg-white shadow-md rounded">
 					<thead>
 						<tr class="bg-gray-200">
 							<th class="text-left p-3 px-5" v-for="(data, column) in output[0]">{{column}}</th>
@@ -51,7 +51,7 @@
 					</thead>
 					<tbody>
 						<tr v-for="(row, index) in output" class="border-b hover:bg-orange-100" :class="[index % 2 ? 'bg-gray-100' : 'bg-white']">
-							<td v-for="data in row" class="p-3 px-5">{{isNaN(data) ? data : data * multiplier}}</td>
+							<td v-for="data in row" class="p-3 px-5">{{data}}</td>
 						</tr>
 					</tbody>
 				</table>
