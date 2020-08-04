@@ -2,9 +2,11 @@
 
 ## Install
 
+First clone the code from GitHub:
+
 `git clone https://github.com/markhoney/upload.git`
 
-The following is only needed for the Express demo, as all frontend libraries are pulled from the UnPKG CDN:
+Then install all NPM dependencies:
 
 `npm install`
 
@@ -12,9 +14,9 @@ The following is only needed for the Express demo, as all frontend libraries are
 
 The following command will launch this project using the Vue CLI:
 
-`npm run serve`
+`npm run dev`
 
-For a nicer looking option, you can instead launch the project from the Vue CLI's GUI (yes, it's weird that a CLI has a GUI!):
+If a User Interface is more your thing, you can instead launch the project from the Vue CLI's GUI (yes, it's weird that a CLI has a GUI!):
 
 `npm run ui`
 
@@ -24,7 +26,11 @@ To build this project for deployment, either run the build command in the GUI or
 
 `npm run build`
 
-Once built, compiled files that can be served with any web server will be available in the `dist` directory.
+Once built, compiled files that can be served with any web server will be available in the `docs` directory (this is normally the `dist` directory, but has been changed in vue.config.js to allow serving from GitHub Pages). To test serving the code, you can use the `serve` Node app:
+
+`npm run serve`
+
+Note that the following command won't work properly until you've built the project.
 
 ## Technology
 

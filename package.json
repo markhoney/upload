@@ -5,8 +5,9 @@
 	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
 	"scripts": {
 		"ui": "vue ui",
-		"serve": "vue-cli-service serve",
+		"dev": "vue-cli-service serve",
 		"build": "vue-cli-service build",
+		"serve": "serve docs",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"main": "server.js",
@@ -25,6 +26,7 @@
 		"@vue/cli-plugin-router": "~4.4.0",
 		"@vue/cli-plugin-vuex": "~4.4.0",
 		"@vue/cli-service": "~4.4.0",
+		"serve": "^11.3.2",
 		"vue-cli-plugin-tailwind": "^1.4.1",
 		"vue-template-compiler": "^2.6.11"
 	},
