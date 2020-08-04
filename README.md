@@ -34,8 +34,8 @@ Note that the following command won't work properly until you've built the proje
 
 ## Technology
 
-[Vue.js](https://vuejs.org/) is used to provide the frontend smarts in this demo. [Tailwind CSS](https://tailwindcss.com/) has been added as a simple way to make the page look pretty, and several [Tailwind Components](https://tailwindcomponents.com/) were used to speed things up.
+[Vue.js](https://vuejs.org/) is used (via the [Vue CLI](https://cli.vuejs.org/)) to provide the frontend smarts in this demo. [Tailwind CSS](https://tailwindcss.com/) has been added as a simple way to make the page look pretty, and several [Tailwind Components](https://tailwindcomponents.com/) were used to speed things up.
 
 ## Testing
 
-Any simple Excel spreadsheet can be uploaded, but there's a test spreadsheet (called Test.xlsx) in the root of this repository.
+Any simple Excel spreadsheet can be uploaded, but there's a test spreadsheet (called `Test.xlsx`) in the root of this repository.

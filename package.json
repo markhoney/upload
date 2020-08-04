@@ -3,6 +3,7 @@
 	"version": "1.0.1",
 	"description": "A test of uploading an Excel spreadsheet, manipulating the data, and then allowing download of the edited data as a spreadsheet",
 	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
+	"license": "ISC",
 	"scripts": {
 		"ui": "vue ui",
 		"dev": "vue-cli-service serve",
@@ -34,6 +35,5 @@
 		"> 1%",
 		"last 2 versions",
 		"not dead"
-	],
-	"license": "ISC"
+	]
 }
