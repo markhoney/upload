@@ -10,17 +10,21 @@ The following is only needed for the Express demo, as all frontend libraries are
 
 ## Run
 
-The following will run a minimal Express server to serve the HTML file (index.html) used in this test:
+The following command will launch this project using the Vue CLI:
 
-`npm start`
+`npm run serve`
 
-However, Express is not needed. The single static HTML file can be directly opened in a browser, or served by any web server.
+For a nicer looking option, you can instead launch the project from the Vue CLI's GUI (yes, it's weird that a CLI has a GUI!):
 
-## Online
+`npm run ui`
 
-The [GitHub repository](https://github.com/markhoney/upload) hosting this code has been configured to serve the demo page via GitHub Pages, and can be accessed at:
+## Build
 
-[https://markhoney.github.io/upload/](https://markhoney.github.io/upload/)
+To build this project for deployment, either run the build command in the GUI or run:
+
+`npm run build`
+
+Once built, compiled files that can be served with any web server will be available in the `dist` directory.
 
 ## Technology
 

@@ -2,13 +2,36 @@
 	"name": "upload-test",
 	"version": "1.0.1",
 	"description": "A test of uploading an Excel spreadsheet, manipulating the data, and then allowing download of the edited data as a spreadsheet",
-	"main": "server.js",
+	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
 	"scripts": {
+		"ui": "vue ui",
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
-	"license": "ISC",
+	"main": "server.js",
 	"dependencies": {
-		"express": "^4.17.1"
-	}
+		"core-js": "^3.6.5",
+		"register-service-worker": "^1.7.1",
+		"vue": "^2.6.11",
+		"vue-router": "^3.2.0",
+		"vuex": "^3.4.0",
+		"xlsx": "^0.16.5"
+	},
+	"devDependencies": {
+		"@vue/cli": "^4.4.6",
+		"@vue/cli-plugin-babel": "~4.4.0",
+		"@vue/cli-plugin-pwa": "~4.4.0",
+		"@vue/cli-plugin-router": "~4.4.0",
+		"@vue/cli-plugin-vuex": "~4.4.0",
+		"@vue/cli-service": "~4.4.0",
+		"vue-cli-plugin-tailwind": "^1.4.1",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	],
+	"license": "ISC"
 }
