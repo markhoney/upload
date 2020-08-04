@@ -1,5 +1,5 @@
 <template>
-	<table class="w-full text-md bg-white shadow-md rounded"><!-- Uploaded data table -->
+	<table v-if="value && value.length" class="w-full text-md bg-white shadow-md rounded"><!-- Uploaded data table -->
 		<thead>
 			<tr class="bg-gray-200">
 				<th class="text-left p-3 px-5" v-for="(data, column) in value[0]" :key="column">{{column}}</th>
@@ -15,6 +15,6 @@
 
 <script>
 	export default {
-		props: ['value', 'multiplier', 'append'],
+		props: ['value'],
 	}
 </script>
