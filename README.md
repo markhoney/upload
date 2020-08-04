@@ -4,23 +4,14 @@
 
 `git clone https://github.com/markhoney/upload.git`
 
-The following is only needed for the Express demo, as all frontend libraries are pulled from the UnPKG CDN:
-
 `npm install`
 
 ## Run
 
-The following will run a minimal Express server to serve the HTML file (index.html) used in this test:
+The following will run Vite:
 
-`npm start`
+`npm run dev`
 
-However, Express is not needed. The single static HTML file can be directly opened in a browser, or served by any web server.
-
-## Online
-
-The [GitHub repository](https://github.com/markhoney/upload) hosting this code has been configured to serve the demo page via GitHub Pages, and can be accessed at:
-
-[https://markhoney.github.io/upload/](https://markhoney.github.io/upload/)
 
 ## Technology
 
