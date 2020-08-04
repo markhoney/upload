@@ -2,13 +2,18 @@
 	"name": "upload-test",
 	"version": "1.0.1",
 	"description": "A test of uploading an Excel spreadsheet, manipulating the data, and then allowing download of the edited data as a spreadsheet",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
 	"author": "Mark Honeychurch <mark@honeychurch.org> (https://mark.honeychurch.org)",
 	"license": "ISC",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
 	"dependencies": {
-		"express": "^4.17.1"
+		"vue": "^3.0.0-rc.1"
+	},
+	"devDependencies": {
+		"vite": "^1.0.0-rc.1",
+		"@vue/compiler-sfc": "^3.0.0-rc.1"
 	}
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>Upload test</title>
+		<link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script lang="javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => { // Don't run until the HTML has loaded
+				const app = new Vue({ // Create a new Vue insance
+					el: '#app', // Bind our Vue instance to the HTML element with ID "app"
+					data: {
+						filename: '', // The uploaded filename
+						input: [], // The contents of the uploaded spreadsheet
+						multiplier: 1, // Used for a data manipulation test
+						append: '', // Another data manipulation test
+					},
+					computed: {
+						output() { // This is where we dynamically manipulate the uploaded data. This version will be used
+							return this.input.map((row) => { // For each row of data in our spreadsheet
+								const output = {};
+								for (const [key, value] of Object.entries(row)) { // For each cell in the row
+									output[key] = (isNaN(value) ? value : value * this.multiplier) + this.append; // Multiply the cell value (if it's a number), and then append some text
+								}
+								return output;
+							});
+						},
+					},
+					methods: {
+						upload(event) { // Upload an Excel file
+							const reader = new FileReader();
+							reader.onload = (e) => { // When the file's been loaded
+								const workbook = XLSX.read(new Uint8Array(e.target.result), {type: 'array'}); // Read the Excel file
+								this.input = XLSX.utils.sheet_to_json(workbook.Sheets['Sheet1']); // Turn the first spreadsheet tab's data into JSON, and save it as dynamic Vue data (this should probably not be hard coded to "Sheet1")
+							};
+							this.filename = event.target.files[0].name; // Grab the uploaded filename (we don't use this at the moment, but it might be useful as the download filename)
+							reader.readAsArrayBuffer(event.target.files[0]); // Read the loaded file
+						},
+						download() { // Download the manipulated data as an Excel spreadsheet
+							const workbook = XLSX.utils.book_new(); // Make a new spreadsheet object
+							XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(this.output), 'Sheet1'); // Convert our output data to a workbook and append it to our empty export spreadsheet
+							XLSX.writeFile(workbook, 'Test.xlsx'); // Write our file (as this is done in the browser, it automagically initiates a file download)
+						},
+					},
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="border border-dashed border-gray-500 relative"><!-- File upload -->
+				<input ref="import" type="file" @input="upload" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
+				<div class="text-center p-10 absolute top-0 right-0 left-0 m-auto">
+					<h4>
+						Drop a file here to upload
+						<br/>or
+					</h4>
+					<p>Click to browse for a file</p>
+				</div>
+			</div>
+			<div class="flex flex-col items-center mx-16">
+				<div class="flex my-8">
+					<div class="custom-number-input h-10 w-64"><!-- Multiplier -->
+						<label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Numeric cell multiplier</label>
+						<div class="flex flex-row h-10 w-32 rounded-lg relative bg-transparent mt-1">
+							<button @click="multiplier -= 1" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"><span class="m-auto text-2xl font-thin">−</span></button>
+							<input type="number" v-model="multiplier" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700 outline-none" name="custom-input-number" value="0"></input>
+							<button @click="multiplier += 1" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"><span class="m-auto text-2xl font-thin">+</span></button>
+						</div>
+					</div>
+					<div class="append h-10 w-64"><!-- Text append -->
+						<label for="append" class="w-64 text-gray-700 text-sm font-semibold">Append text to all cells</label>
+						<input type="text" v-model="append" class="shadow appearance-none border rounded py-2 px-3 text-grey-darker">
+					</div>
+				</div>
+				<div v-if="output && output.length" class="mt-16 mb-8"><!-- File download -->
+					<button class="w-32 bg-gray-300 hover:bg-grey text-grey-900 font-bold py-2 px-4 rounded inline-flex items-center" @click="download">
+						<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+						<span>Download</span>
+					</button>
+				</div>
+				<table class="w-full text-md bg-white shadow-md rounded"><!-- Uploaded data table -->
+					<thead>
+						<tr class="bg-gray-200">
+							<th class="text-left p-3 px-5" v-for="(data, column) in output[0]">{{column}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(row, index) in output" class="border-b hover:bg-orange-100" :class="[index % 2 ? 'bg-gray-100' : 'bg-white']">
+							<td v-for="data in row" class="p-3 px-5">{{data}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
